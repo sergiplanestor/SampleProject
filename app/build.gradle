@@ -1,0 +1,56 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        applicationId "revolhope.splanes.com.sampleproject"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode versionCode
+        versionName "$versionName"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        buildTypes.each {
+            it.buildConfigField 'String', 'API_KEY', apiKey
+            it.buildConfigField 'String', 'API_BASE_URL', apiBaseUrl
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    // Modules
+    implementation project(":data")
+    implementation project(":domain")
+    implementation project(":presentation")
+    // Kotlin standard lib & core
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.core:core-ktx:$core_ktx_version"
+    // Hilt dagger injection
+    implementation "com.google.dagger:hilt-android:$hilt_android_version"
+    kapt "androidx.hilt:hilt-compiler:$hilt_compiler_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_android_compiler_version"
+    // Test
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
