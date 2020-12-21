@@ -2,7 +2,7 @@
 buildscript {
 
     // Classpath dependencies versions
-    ext.gradle_tools_version = "7.0.0-alpha01"
+    ext.gradle_tools_version = '7.0.0-alpha03'
     ext.kotlin_version = "1.4.20"
     ext.hilt_gradle_plugin_version = "2.28-alpha"
     // Kotlin core
